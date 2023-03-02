@@ -150,7 +150,7 @@ const submit = () => {
           <InputLabel for="province" value="Province" class="pb-1.5" />
           <select
             name="province"
-            id="gender"
+            id="state"
             v-model="form.province"
             class="h-10 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
           >
@@ -166,7 +166,7 @@ const submit = () => {
         <div class="mt-4 col-span-2 mx-auto">
           <InputLabel for="assembly" value="Assembly" />
           <TextInput
-            id="assembly"
+            id="town"
             v-model="form.assembly"
             type="text"
             class="mt-1 block w-full"
@@ -179,7 +179,7 @@ const submit = () => {
         <div class="mt-4 col-span-2 mx-auto">
           <InputLabel for="dob" value="Presiding Pastor" />
           <TextInput
-            id="pastor"
+            id="name"
             v-model="form.pastor"
             type="text"
             class="mt-1 block w-full"
