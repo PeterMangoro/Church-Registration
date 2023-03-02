@@ -70,9 +70,15 @@ const provinces = [
 
 <template>
   <FormSection @submitted="updateResidenceInformation">
-    <template #title> Residential Information </template>
+    <template #title>
+      <p class="text-slate-50">
+         Residential Information
+      </p> </template>
 
-    <template #description> Update your Residential Status. </template>
+    <template #description>
+      <p class="text-slate-50">
+      Update your Residential Status.
+      </p> </template>
 
     <template #form>
       <!-- Profile Photo -->

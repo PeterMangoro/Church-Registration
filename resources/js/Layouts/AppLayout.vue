@@ -28,12 +28,12 @@ const logout = () => {
 </script>
 
 <template>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-bible8 bg-cover bg-no-repeat bg-opacity-50 bg-blend-darken bg-slate-900">
+    <div>
         <Head :title="title" />
 
         <Banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-bible8 bg-cover bg-no-repeat bg-opacity-50 bg-blend-darken bg-slate-900">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

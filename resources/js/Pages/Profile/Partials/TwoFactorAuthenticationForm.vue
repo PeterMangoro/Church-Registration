@@ -106,11 +106,15 @@ const disableTwoFactorAuthentication = () => {
 <template>
     <ActionSection>
         <template #title>
+            <p class="text-slate-50">
             Two Factor Authentication
+            </p>
         </template>
 
         <template #description>
+            <p class="text-slate-50">
             Add additional security to your account using two factor authentication.
+            </p>
         </template>
 
         <template #content>

@@ -45,11 +45,15 @@ const closeModal = () => {
 <template>
     <ActionSection>
         <template #title>
+            <p class="text-slate-50">
             Browser Sessions
+        </p>
         </template>
 
         <template #description>
+            <p class="text-slate-50">
             Manage and log out your active sessions on other browsers and devices.
+            </p>
         </template>
 
         <template #content>
