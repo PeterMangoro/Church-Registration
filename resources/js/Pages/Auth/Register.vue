@@ -60,7 +60,7 @@ name:'Matebeleland South'
 
 const submit = () => {
   form.post(route("register"), {
-    onFinish: () => form.reset("password", "password_confirmation"),
+    // onFinish: () => form.reset("password", "password_confirmation"),
   });
 };
 </script>
@@ -125,7 +125,7 @@ const submit = () => {
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
-          <InputError class="mt-2" :message="form.errors.dob" />
+          <InputError class="mt-2" :message="form.errors.gender" />
         </div>
       </div>
 
@@ -146,22 +146,22 @@ const submit = () => {
                 </div>
               </fieldset>
       </div>
-
-      <div v-if="member==='yes'" >
-        <div class="mt-4">
+      <div class="mt-4">
           <InputLabel for="province" value="Province" class="pb-1.5" />
           <select
             name="province"
             id="gender"
-            v-model="province"
+            v-model="form.province"
             class="h-10 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
           >
-            <option v-for="province in provinces" :key="province.name" value="province.name">{{province.name}}</option>
+            <option v-for="province in provinces" :key="province.name" :value="province.name">{{province.name}}</option>
             
             
           </select>
           <InputError class="mt-2" :message="form.errors.province" />
         </div>
+      <div v-if="member==='yes'" >
+        
 
         <div class="mt-4 col-span-2 mx-auto">
           <InputLabel for="assembly" value="Assembly" />
@@ -212,15 +212,16 @@ const submit = () => {
                 <div class="mt-4 space-y-4">
                  
                   <div class="flex items-center">
-                    <input id="accommodation_yes" name="form.need_accommodation" value="yes" type="radio" class="h-3 w-3 border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                    <input id="accommodation_yes" v-model="form.need_accommodation" value="yes" type="radio" class="h-3 w-3 border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                     <label for="accommodation_yes" class="ml-3 block text-sm font-medium text-gray-700">Yes. I need accommodation</label>
                   </div>
                   <div class="flex items-center">
-                    <input id="accommodation_no" name="form.need_accommodation" value="no" type="radio" class="h-3 w-3 border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                    <input id="accommodation_no" v-model="form.need_accommodation" value="no" type="radio" class="h-3 w-3 border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                     <label for="accommodation_no" class="ml-3 block text-sm font-medium text-gray-700">No. I have a place to stay</label>
                   </div>
                 </div>
               </fieldset>
+              <InputError class="mt-2" :message="form.errors.need_accommodation" />
       </div>
 
       <div class="mt-4">
