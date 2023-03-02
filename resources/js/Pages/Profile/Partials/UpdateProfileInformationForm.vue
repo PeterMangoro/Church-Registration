@@ -16,8 +16,14 @@ const props = defineProps({
 const form = useForm({
     _method: 'PUT',
     name: props.user.name,
-    email: props.user.email,
+    username: props.user.username,
+    dob:props.user.dob,
+    gender:props.user.gender,
     photo: null,
+    need_accommodation: props.user.need_accommodation,
+  province: props.user.province,
+  assembly: props.user.assembly,
+  pastor: props.user.pastor,
 });
 
 const verificationLinkSent = ref(null);
@@ -36,9 +42,6 @@ const updateProfileInformation = () => {
     });
 };
 
-const sendEmailVerification = () => {
-    verificationLinkSent.value = true;
-};
 
 const selectNewPhoto = () => {
     photoInput.value.click();
@@ -82,7 +85,7 @@ const clearPhotoFileInput = () => {
         </template>
 
         <template #description>
-            Update your account's profile information and email address.
+            Update your account's profile information and username address.
         </template>
 
         <template #form>
@@ -140,38 +143,40 @@ const clearPhotoFileInput = () => {
                 <InputError :message="form.errors.name" class="mt-2" />
             </div>
 
-            <!-- Email -->
+            <!-- Username -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="username" value="Username" />
                 <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
+                    id="username"
+                    v-model="form.username"
+                    type="text"
                     class="mt-1 block w-full"
                     autocomplete="username"
                 />
-                <InputError :message="form.errors.email" class="mt-2" />
-
-                <div v-if="$page.props.jetstream.hasEmailVerification && user.email_verified_at === null">
-                    <p class="text-sm mt-2">
-                        Your email address is unverified.
-
-                        <Link
-                            :href="route('verification.send')"
-                            method="post"
-                            as="button"
-                            class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            @click.prevent="sendEmailVerification"
-                        >
-                            Click here to re-send the verification email.
-                        </Link>
-                    </p>
-
-                    <div v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
-                        A new verification link has been sent to your email address.
-                    </div>
-                </div>
+                <InputError :message="form.errors.username" class="mt-2" />               
             </div>
+
+            <!-- DOB -->
+            <div class="col-span-6 sm:col-span-4">
+                <InputLabel for="dob" value="Date of Birth" />
+          <TextInput
+            id="dob"
+            v-model="form.dob"
+            type="date"
+            class="mt-1 block w-full"
+            required
+            autocomplete="dob"
+          />
+          <InputError class="mt-2" :message="form.errors.dob" />   </div>
+
+             <!-- Gender -->
+             <div class="col-span-6 sm:col-span-4">
+                <InputLabel for="gender" value="Gender" />
+          <select name="gender" id="gender" v-model="form.gender" class="h-10 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <InputError class="mt-2" :message="form.errors.gender" />   </div>
         </template>
 
         <template #actions>

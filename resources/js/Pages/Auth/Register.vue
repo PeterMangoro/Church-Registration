@@ -20,6 +20,7 @@ const form = useForm({
   pastor:"",
   invite:"",
   need_accommodation:"",
+  gender:"",
   password: "",
   password_confirmation: "",
   terms: false,
@@ -121,7 +122,7 @@ const submit = () => {
 
         <div class="mt-4 col-span-2 mx-auto">
           <InputLabel for="gender" value="Gender" />
-          <select name="gender" id="gender" v-model="gender" class="h-10 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+          <select name="gender" id="gender" v-model="form.gender" class="h-10 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>

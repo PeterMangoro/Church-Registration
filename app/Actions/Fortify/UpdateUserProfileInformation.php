@@ -19,21 +19,31 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'username' => ['required', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'dob' => ['required'],
+            'gender' => ['required', 'string', 'max:255'],
+            'province' => ['nullable', 'string', 'max:255'],
+            'assembly' => ['required_with:pastor', 'string', 'max:255','nullable'],
+            'pastor' => ['required_with:assembly', 'string', 'max:255','nullable'],
+            'invite' => ['nullable', 'string', 'max:255'],
+            'need_accommodation' => ['nullable', 'string', 'max:255'],
         ])->validateWithBag('updateProfileInformation');
 
-        if (isset($input['photo'])) {
-            $user->updateProfilePhoto($input['photo']);
-        }
-
-        if ($input['email'] !== $user->email &&
+    
+        if ($input['username'] !== $user->username &&
             $user instanceof MustVerifyEmail) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
                 'name' => $input['name'],
-                'email' => $input['email'],
+                'username' => $input['username'],
+                'dob' => $input['dob'],
+                'gender' => $input['gender'],
+                'province' => $input['province'],
+                'assembly' => $input['assembly'],
+                'pastor' => $input['pastor'],
+               
+                'need_accommodation' => $input['need_accommodation'],
             ])->save();
         }
     }
@@ -47,8 +57,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'name' => $input['name'],
-            'email' => $input['email'],
-            'email_verified_at' => null,
+            'username' => $input['username'],
+            'username_verified_at' => null,
         ])->save();
 
         $user->sendEmailVerificationNotification();
