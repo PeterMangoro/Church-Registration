@@ -26,7 +26,13 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'username' => $this->faker->userName(),
+            'gender'=>fake()->randomElement(['male','female']),
+            'province'=>fake()->randomElement(['Bulawayo', 'Harare', 'Manicaland', 'Mashonaland Central', 'Mashonaland East', 'Mashonaland West', 'Masvingo', 'Matabeleland North',  'Matabeleland South']),
+            'assembly'=>fake()->randomElement([fake()->state,null]),
+            'pastor' => fake()->randomElement([fake()->name,null]),
+            'need_accommodation'=>fake()->randomElement(['yes','no']),
+            'dob' =>  fake()->dateTimeBetween($startDate = '-50 years', $endDate = '+0 years', $timezone = null),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'two_factor_secret' => null,
