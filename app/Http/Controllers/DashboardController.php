@@ -18,13 +18,13 @@ class DashboardController extends Controller
         $all=User::count();
         $attended=User::where('status','present')->count();
         $turnup = ($attended/$all)*100;
-        $new_believers = User::whereNull('pastor')->count();
-        $believers = User::whereNotNull('pastor')->count();
-        $sunday_school = User::where('dob', '>' ,$twelve_years )->count();
-        $youth = User::where('dob', '<' ,$twelve_years )->where('dob','>',$thirty_years)->count();
-        $over_comers = User::where('dob','<',$thirty_years )->count();
-        $male = User::where('gender','male')->count();
-        $female = User::where('gender','female')->count();
+        $new_believers = User::where('status','present')->whereNull('pastor')->count();
+        $believers = User::where('status','present')->whereNotNull('pastor')->count();
+        $sunday_school = User::where('status','present')->where('dob', '>' ,$twelve_years )->count();
+        $youth = User::where('status','present')->where('dob', '<' ,$twelve_years )->where('dob','>',$thirty_years)->count();
+        $over_comers = User::where('status','present')->where('dob','<',$thirty_years )->count();
+        $male = User::where('status','present')->where('gender','male')->count();
+        $female = User::where('status','present')->where('gender','female')->count();
         $need_accommodation = User::where('need_accommodation','yes')->count();
         
         
@@ -70,6 +70,91 @@ class DashboardController extends Controller
         return inertia('Present',[
             'data'=>[
                 'users'=> User::where('status','present')->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function new()
+    {
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('status','present')->whereNull('pastor')->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function members()
+    {
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('status','present')->whereNotNull('pastor')->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function sundaySchool()
+    {
+        $twelve_years = Carbon::now()->subYears(12);
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('status','present')->where('dob', '>' ,$twelve_years )->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function youth()
+    {
+        $twelve_years = Carbon::now()->subYears(12);
+        $thirty_years = Carbon::now()->subYears(30);
+
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('status','present')->where('dob', '<' ,$twelve_years )->where('dob','>',$thirty_years)->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function overComers()
+    {
+        $thirty_years = Carbon::now()->subYears(30);
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('status','present')->where('dob','<',$thirty_years )->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function male()
+    {
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('status','present')->where('gender','male')->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function female()
+    {
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('status','present')->where('gender','female')->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function needAccommodation()
+    {
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('need_accommodation','yes')->search(request('search'))->paginate(15),
                 Filters::filters()
             ]
             ]);

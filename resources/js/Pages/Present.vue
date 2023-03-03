@@ -1,10 +1,10 @@
 <template>
     <app-layout>
-        <template #header>
+        <!-- <template #header>
       <h2 class="text-xl font-semibold leading-tight text-sky-500">
         All Present People
       </h2>
-    </template>
+    </template> -->
 
     <list :users = "data.users" searchRoute="all" />
     </app-layout>

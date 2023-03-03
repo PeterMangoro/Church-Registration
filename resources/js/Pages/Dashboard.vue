@@ -24,7 +24,7 @@ const props = defineProps({
           <dashboard-card
             title="TurnUp %"
             :total="data.turnup"
-            add_path="dashboard"          
+                     
           />
 
           <dashboard-card
@@ -44,64 +44,63 @@ const props = defineProps({
           <dashboard-card
             title="New Believers"
             :total="data.new_believers"
-            add_path="dashboard"
-            more_path="dashboard"
+            more_path="new"
             more_tip="Click to view All"
           />
 
           <dashboard-card
             title="Church Members"
             :total="data.believers"
-            add_path="dashboard"
-            more_path="dashboard"
+           
+            more_path="members"
             more_tip="Click to view All"
           />
 
           <dashboard-card
             title="Sunday School"
             :total="data.sunday_school"
-            add_path="dashboard"
-            more_path="dashboard"
+           
+            more_path="sundaySchool"
             more_tip="Click to view All"
           />
 
           <dashboard-card
             title=" Youth"
             :total="data.youth"
-            add_path="dashboard"
-            more_path="dashboard"
+           
+            more_path="youth"
             more_tip="Click to view All"
           />
 
           <dashboard-card
             title=" OverComers"
             :total="data.over_comers"
-            add_path="dashboard"
-            more_path="dashboard"
+           
+            more_path="overComers"
             more_tip="Click to view All"
           />
 
           <dashboard-card
             title="Total Male Attendants"
             :total="data.male"
-            add_path="dashboard"
-            more_path="dashboard"
+           
+            more_path="male"
             more_tip="Click to view All"
           />
 
           <dashboard-card
             title="Total Female Attendants"
             :total="data.female"
-            add_path="dashboard"
-            more_path="dashboard"
+           
+            more_path="female"
             more_tip="Click to view All"
           />
 
           <dashboard-card
             title="Total Accommodation Seekers"
             :total="data.need_accommodation"
-            add_path="dashboard"
-            more_path="dashboard"
+           
+            more_path="needAccommodation"
             more_tip="Click to view All"
           />
         </div>
