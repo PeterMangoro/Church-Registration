@@ -90,7 +90,7 @@ const submit = () => {
         <InputError class="mt-2" :message="form.errors.name" />
       </div>
 
-      <div class="mt-4">
+      <!-- <div class="mt-4">
           <InputLabel for="username" value="Username" />
           <TextInput
             id="username"
@@ -105,7 +105,7 @@ const submit = () => {
           </p>
 
           <InputError class="mt-2" :message="form.errors.username" />
-        </div>
+        </div> -->
 
         <div class="mt-4">
           <InputLabel for="contact" value="Contact" />
@@ -240,7 +240,7 @@ const submit = () => {
               <InputError class="mt-2" :message="form.errors.need_accommodation" />
       </div>
 
-      <div class="mt-4">
+      <!-- <div class="mt-4">
         <InputLabel for="password" value="Password" />
         <TextInput
           id="password"
@@ -251,9 +251,9 @@ const submit = () => {
           autocomplete="new-password"
         />
         <InputError class="mt-2" :message="form.errors.password" />
-      </div>
+      </div> -->
 
-      <div class="mt-4">
+      <!-- <div class="mt-4">
         <InputLabel for="password_confirmation" value="Confirm Password" />
         <TextInput
           id="password_confirmation"
@@ -264,7 +264,7 @@ const submit = () => {
           autocomplete="new-password"
         />
         <InputError class="mt-2" :message="form.errors.password_confirmation" />
-      </div>
+      </div> -->
 
       <div
         v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature"

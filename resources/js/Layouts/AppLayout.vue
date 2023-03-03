@@ -51,10 +51,14 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Register New Person
-                                </NavLink>
+<div class="m-auto">
+    <form @submit.prevent="logout">
+                                            <DropdownLink as="button">
+                                                Register New person
+                                            </DropdownLink>
+                                        </form>
+</div>
+                                
                             </div>
                         </div>
 

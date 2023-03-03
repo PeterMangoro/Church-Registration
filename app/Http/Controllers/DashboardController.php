@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
         $all=User::count();
         $attended=User::where('status','present')->count();
-        $turnup = ($attended/$all)*100;
+        $turnup =  number_format(($attended/$all)*100, 2).'%';
         $new_believers = User::where('status','present')->whereNull('pastor')->count();
         $believers = User::where('status','present')->whereNotNull('pastor')->count();
         $sunday_school = User::where('status','present')->where('dob', '>' ,$twelve_years )->count();
