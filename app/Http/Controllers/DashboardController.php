@@ -16,6 +16,8 @@ class DashboardController extends Controller
         $thirty_years = Carbon::now()->subYears(30);
 
         $all=User::count();
+        $attended=User::where('status','present')->count();
+        $turnup = ($attended/$all)*100;
         $new_believers = User::whereNull('pastor')->count();
         $believers = User::whereNotNull('pastor')->count();
         $sunday_school = User::where('dob', '>' ,$twelve_years )->count();
@@ -29,6 +31,8 @@ class DashboardController extends Controller
         return inertia('Dashboard',[
            'data'=> [
             'all'=>$all,
+            'attended'=>$attended,
+            'turnup'=>$turnup,
             'new_believers'=>$new_believers,
             'believers'=>$believers,
             'sunday_school'=>$sunday_school,
@@ -40,18 +44,7 @@ class DashboardController extends Controller
             ]
             
         ]);
-    }
-
-    public function all()
-    {
-        // dd(User::paginate(15));
-        return inertia('All',[
-            'data'=>[
-                'users'=> User::search(request('search'))->paginate(15),
-                Filters::filters()
-            ]
-            ]);
-    }
+    }   
 
     public function attend(User $user)
     {
@@ -60,5 +53,25 @@ class DashboardController extends Controller
         $user->save();
 
        return back()->with('flash.banner', 'Successfully Marked as Present');
+    }
+
+    public function all()
+    {
+        return inertia('All',[
+            'data'=>[
+                'users'=> User::search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function present()
+    {
+        return inertia('Present',[
+            'data'=>[
+                'users'=> User::where('status','present')->search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
     }
 }

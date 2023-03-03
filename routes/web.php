@@ -33,7 +33,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard');
-    Route::get('all-registered-users', [DashboardController::class, 'all'])->name('all');
     Route::post('attend/{user}', [DashboardController::class, 'attend'])->name('attend');
+    Route::get('all-registered-users', [DashboardController::class, 'all'])->name('all');
+    Route::get('all-present-users', [DashboardController::class, 'present'])->name('present');
+
 
 });

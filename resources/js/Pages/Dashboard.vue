@@ -23,15 +23,21 @@ const props = defineProps({
         >
           <dashboard-card
             title="TurnUp %"
-            total="86%"
+            :total="data.turnup"
             add_path="dashboard"          
           />
 
           <dashboard-card
             title="All Registered People"
-            :total="data.all"
-            add_path="all"
+            :total="data.all"          
             more_path="all"
+            more_tip="Click to view All"
+          />
+
+          <dashboard-card
+            title="All Present People"
+            :total="data.attended"           
+            more_path="present"
             more_tip="Click to view All"
           />
 
