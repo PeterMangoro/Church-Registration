@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+
+use App\ValueObject\Filters;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,6 +15,7 @@ class DashboardController extends Controller
         $twelve_years = Carbon::now()->subYears(12);
         $thirty_years = Carbon::now()->subYears(30);
 
+        $all=User::count();
         $new_believers = User::whereNull('pastor')->count();
         $believers = User::whereNotNull('pastor')->count();
         $sunday_school = User::where('dob', '>' ,$twelve_years )->count();
@@ -25,6 +28,7 @@ class DashboardController extends Controller
         
         return inertia('Dashboard',[
            'data'=> [
+            'all'=>$all,
             'new_believers'=>$new_believers,
             'believers'=>$believers,
             'sunday_school'=>$sunday_school,
@@ -36,5 +40,25 @@ class DashboardController extends Controller
             ]
             
         ]);
+    }
+
+    public function all()
+    {
+        // dd(User::paginate(15));
+        return inertia('All',[
+            'data'=>[
+                'users'=> User::search(request('search'))->paginate(15),
+                Filters::filters()
+            ]
+            ]);
+    }
+
+    public function attend(User $user)
+    {
+        $user->status = 'present';
+ 
+        $user->save();
+
+       return back()->with('flash.banner', 'Successfully Marked as Present');
     }
 }

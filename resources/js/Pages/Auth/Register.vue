@@ -14,6 +14,7 @@ const member = ref(null)
 const form = useForm({
   name: "",
   username: "",
+  contact: "",
   dob:"",
   province:"",
   assembly:"",
@@ -96,7 +97,7 @@ const submit = () => {
             v-model="form.username"
             type="text"
             class="block w-full mt-1"
-            required
+            
             @keydown.space.prevent
           />
           <p class="text-sm italic">
@@ -104,6 +105,20 @@ const submit = () => {
           </p>
 
           <InputError class="mt-2" :message="form.errors.username" />
+        </div>
+
+        <div class="mt-4">
+          <InputLabel for="contact" value="Contact" />
+          <TextInput
+            id="contact"
+            v-model="form.contact"
+            type="text"
+            class="block w-full mt-1"
+            required
+            
+          />         
+
+          <InputError class="mt-2" :message="form.errors.contact" />
         </div>
 
       <div class="flex flex-wrap">
@@ -232,7 +247,7 @@ const submit = () => {
           v-model="form.password"
           type="password"
           class="mt-1 block w-full"
-          required
+          
           autocomplete="new-password"
         />
         <InputError class="mt-2" :message="form.errors.password" />
@@ -245,7 +260,7 @@ const submit = () => {
           v-model="form.password_confirmation"
           type="password"
           class="mt-1 block w-full"
-          required
+          
           autocomplete="new-password"
         />
         <InputError class="mt-2" :message="form.errors.password_confirmation" />

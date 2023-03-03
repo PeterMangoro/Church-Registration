@@ -34,6 +34,7 @@ class User extends Authenticatable
         'pastor',
         'invite',
         'need_accommodation',
+        'contact'
     ];
 
     /**
@@ -65,4 +66,23 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function scopeSearch($query, ?string $terms = null)
+    {
+        collect(str_getcsv($terms, ' ', '"'))->filter()
+            ->each(function ($term) use ($query) {
+                $term = '%' . preg_replace('/[^A-Za-z0-9]/', '', $term) . '%';
+
+                $query->whereIn('id', function ($query) use ($term) {
+                    $query->select('id')
+                        ->from(function ($query) use ($term) {
+                            $query->select('id')
+                                ->from('users')
+                                ->where('name_normalized', 'like', $term)
+                                
+                            ;
+                        }, 'matches');
+                });
+            });
+    }
 }

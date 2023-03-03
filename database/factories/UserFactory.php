@@ -27,6 +27,8 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'username' => $this->faker->userName(),
+            'contact'=>fake()->phoneNumber,
+            'status'=>fake()->randomElement(['present',null]),
             'gender'=>fake()->randomElement(['male','female']),
             'province'=>fake()->randomElement(['Bulawayo', 'Harare', 'Manicaland', 'Mashonaland Central', 'Mashonaland East', 'Mashonaland West', 'Masvingo', 'Matabeleland North',  'Matabeleland South']),
             'assembly'=>fake()->randomElement([fake()->state,null]),
