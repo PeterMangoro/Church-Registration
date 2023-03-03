@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProvinceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -44,4 +45,23 @@ Route::middleware([
     Route::get('male', [DashboardController::class, 'male'])->name('male');
     Route::get('female', [DashboardController::class, 'female'])->name('female');
     Route::get('needing-accommodation', [DashboardController::class, 'needAccommodation'])->name('needAccommodation');
+    
+    //Provinces
+    Route::get('provinces', [ProvinceController::class, 'show'])->name('provinces');
+    Route::get('bulawayo', [ProvinceController::class, 'bulawayo'])->name('bulawayo');
+    Route::get('harare', [ProvinceController::class, 'harare'])->name('harare');
+    Route::get('manicaland', [ProvinceController::class, 'show'])->name('manicaland');
+    Route::get('mashonaland-central', [ProvinceController::class, 'mashonalandCentral'])->name('mashonalandCentral');
+    Route::get('mashonaland-east', [ProvinceController::class, 'mashonalandEast'])->name('mashonalandEast');
+    Route::get('mashonaland-west', [ProvinceController::class, 'mashonalandWest'])->name('mashonalandWest');
+    Route::get('masvingo', [ProvinceController::class, 'masvingo'])->name('masvingo');
+    Route::get('matebeleland-north', [ProvinceController::class, 'matebelelandNorth'])->name('matebelelandNorth');
+    Route::get('matebeleland-south', [ProvinceController::class, 'matebelelandSouth'])->name('matebelelandSouth');
+    
+    
+    
+    
+    
+    
+    
 });

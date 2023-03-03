@@ -24,14 +24,14 @@ const props = defineProps({
           <dashboard-card
             title="TurnUp %"
             :total="data.turnup"
-                     
+            more_path="provinces"    
           />
 
           <dashboard-card
             title="All Registered People"
             :total="data.all"          
             more_path="all"
-            more_tip="Click to view All"
+            more_tip="Click to view All "
           />
 
           <dashboard-card

@@ -71,6 +71,7 @@ class DashboardController extends Controller
             'data'=>[
                 'users'=> User::where('status','present')->search(request('search'))->paginate(15),
                 Filters::filters()
+               
             ]
             ]);
     }
